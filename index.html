@@ -65,7 +65,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
   <header class="sticky top-0 z-30 bg-[#090b0d]/95 border-b border-[#292e32]">
     <div class="max-w-[1500px] mx-auto p-4 flex justify-between items-center gap-3 flex-wrap">
       <div class="flex items-center gap-3">
-        <div onclick="handleLogoTripleClick()" title="NOVA Trade Terminal" class="w-10 h-10 border border-[#a78954] rounded-xl flex items-center justify-center gold font-bold text-xl cursor-pointer select-none">Z</div>
+        <div onclick="handleLogoTripleClick()" title="NOVA Trade Terminal" class="w-10 h-10 border border-[#a78954] rounded-xl flex items-center justify-center gold font-bold text-xl cursor-pointer select-none">N</div>
         <div>
           <div class="brand font-extrabold text-lg">NOVA TRADE</div>
           <div class="text-[9px] tracking-[.3em] muted">GLOBAL MARKETS TERMINAL</div>
@@ -197,8 +197,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
         </div>
 
         <div class="panel p-5">
-          <div class="gold text-xs tracking-widest">ACCOUNT STATUS</div>
-          <div id="accountPanelStatus" class="font-bold text-xl mt-3">GUEST</div>
+          <div class="gold text-xs tracking-widest">ACCOUNT STATUS</div> <div id="accountPanelStatus" class="font-bold text-xl mt-3">GUEST</div>
           <div class="muted text-xs mt-2">Create account or login to deposit and execute live trades.</div>
         </div>
       </aside>
@@ -231,32 +230,37 @@ button:disabled{opacity:.45;cursor:not-allowed}
   </div>
 </div>
 
-<!-- DEPOSIT MODAL -->
+<!-- DEPOSIT MODAL WITH QR DOWNLOAD -->
 <div id="qrDepositModal" class="qr-modal-overlay">
   <div class="qr-modal-box">
     <button onclick="closeQrDepositModal()" class="absolute right-4 top-3 text-2xl muted">×</button>
-    <div class="brand gold text-xs mb-2">NOVA TRADE · REGIONAL GATEWAY</div>
+    <div class="brand gold text-xs mb-2">NOVA TECH · REGIONAL GATEWAY</div>
 
     <div id="depositFormView">
       <h3 class="text-xl font-bold mb-3">Instant Scan & Pay</h3>
 
       <div class="english-inst">
-        Scan the official Gateway QR Code using any banking or mobile wallet app. Once completed, submit your transaction ID below for manual ledger verification.
+        Scan the official Gateway QR Code using any banking or mobile wallet app, or download it directly to your device gallery. Once completed, submit your transaction ID below for manual ledger verification.
       </div>
 
       <div class="qr-timer-display" id="qrTimerDisplay">03:00</div>
 
       <div class="qr-img-wrap">
-        <img src="qr-code.png.jpeg.jpeg" alt="NOVATrade payment QR code" onerror="this.style.display='none';document.getElementById('qrImageError').style.display='block'">
+        <img id="qrCodeImageElement" src="qr-code.png.jpeg.jpeg" alt="NOVA Tech payment QR code" onerror="this.style.display='none';document.getElementById('qrImageError').style.display='block'">
       </div>
       <p id="qrImageError" style="display:none" class="text-center text-red-400 text-xs mb-3">QR image reference error. Ensure qr-code.png.jpeg.jpeg is available.</p>
+
+      <!-- DOWNLOAD QR CODE BUTTON -->
+      <button type="button" onclick="downloadQrCode()" class="btn border border-[#d0ae70] gold w-full mb-4 flex items-center justify-center gap-2 text-xs">
+        <i class="fa-solid fa-download"></i> DOWNLOAD QR CODE (GALLERY)
+      </button>
 
       <form id="depositForm" onsubmit="submitQrDeposit(event)" class="space-y-3">
         <div>
           <label class="muted text-[11px] mb-1 block">Payment Channel</label>
           <select id="qrPaymentMethod" class="field" required>
             <option value="">Select payment channel</option>
-            <option value="Instant Regional Gateway" selected>Instant Universal Gateway (QR / Mobile Wallet)</option>
+            <option value="NOVA TECH Merchant Gateway" selected>NOVA TECH Merchant Gateway (QR / Mobile Wallet)</option>
             <option value="Direct Banking Transfer">Direct Regional Bank Transfer</option>
           </select>
         </div>
@@ -402,6 +406,23 @@ function formatPKR(amount) {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
+}
+
+// DOWNLOAD QR CODE FUNCTION
+function downloadQrCode() {
+    const imgEl = $('qrCodeImageElement');
+    if (!imgEl || imgEl.style.display === 'none') {
+        toast('QR Code image not available for download.');
+        return;
+    }
+    const src = imgEl.src;
+    const a = document.createElement('a');
+    a.href = src;
+    a.download = 'NOVA-TECH-Deposit-QR.jpeg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    toast('QR Code downloaded successfully to gallery/downloads.');
 }
 
 // SOUND ENGINE (Web Audio API Chimes)
@@ -751,9 +772,7 @@ function adminApproveDeposit(idx) {
     }
 }
 
-// =========================================================================
-// BALANCED LIVE MARKET EXECUTION ENGINE (FIXED & EXPLOIT-FREE)
-// =========================================================================
+// BALANCED LIVE MARKET EXECUTION ENGINE
 function attemptTrade(direction) {
     if (!currentAccount) {
         toast('Please login first to trade.');
@@ -783,7 +802,6 @@ function attemptTrade(direction) {
     isTradeActive = true;
     const entryPrice = currentPrice;
 
-    // Deduct stake immediately upon order execution
     currentAccount.balance -= amount;
     updateDashboard();
 
@@ -804,7 +822,6 @@ function attemptTrade(direction) {
             if (currentAccount.totalTrades === undefined) currentAccount.totalTrades = 0;
             currentAccount.totalTrades++;
 
-            // Settle strictly against actual live chart movement at the 10-second mark
             const exitPrice = currentPrice;
             let isWin = false;
 
@@ -814,7 +831,6 @@ function attemptTrade(direction) {
                 isWin = exitPrice < entryPrice;
             }
 
-            // Standard balanced 75% market payout ratio
             const payoutRate = 0.75;
             const profit = Number((amount * payoutRate).toFixed(2));
 
@@ -850,7 +866,6 @@ function attemptTrade(direction) {
     }, 1000);
 }
 
-// WIN POPUP MODAL FUNCTIONS
 function showWinModal(entry, exit, profit, asset) {
     $('winModalAsset').textContent = asset;
     $('winModalEntry').textContent = formatAssetPrice(entry);
@@ -863,9 +878,7 @@ function closeWinModal() {
     $('tradeWinModal').style.display = 'none';
 }
 
-// =========================================================================
-// MARKET DISPLAY CHART (BALANCED RANDOM-WALK VOLATILITY ENGINE)
-// =========================================================================
+// MARKET DISPLAY CHART & VOLATILITY ENGINE
 let chart;
 let series;
 let volumeSeries;
@@ -1006,7 +1019,6 @@ function startChart() {
     for (let i = 90; i >= 0; i--) {
         const t = now - (i * timeframeSeconds);
         const o = p;
-        // Neutral 50/50 random walk (Math.random() - 0.5)
         const c = o + (Math.random() - 0.5) * (timeframeSeconds * cfg.volatility);
         const vol = Math.floor(Math.random() * 5000 + 1200);
 
@@ -1061,7 +1073,6 @@ function updatePrice() {
     const asset = $('tradeAsset') ? $('tradeAsset').value : 'BTC / USD';
     const cfg = assetBasePrices[asset] || assetBasePrices['BTC / USD'];
 
-    // Balanced unbiased 50/50 market tick movement
     const delta = (Math.random() - 0.5) * (cfg.volatility * 1.4);
     const next = Math.max(0.0001, currentPrice + delta);
     const nowSec = Math.floor(Date.now() / 1000);
@@ -1122,7 +1133,7 @@ function updatePrice() {
     }
 }
 
-// REAL-TIME DYNAMIC LIVE ACTIVITY ENGINE
+// REAL-TIME DYNAMIC ACTIVITY FEED
 const samplePakistaniNames = [
     "Muhammad Ahmed", "Ali Raza", "Usman Malik", "Hassan Khan",
     "Bilal Ahmad", "Hamza Sheikh", "Abdullah Tariq", "Saad Hussain",
@@ -1164,7 +1175,7 @@ function renderSampleActivity() {
     `).join('');
 }
 
-// WEB3FORMS EMAIL FUNCTION
+// WEB3FORMS EMAIL SUBMISSION
 async function sendNovaEmail(subject, message, email) {
     const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -1175,7 +1186,7 @@ async function sendNovaEmail(subject, message, email) {
         body: JSON.stringify({
             access_key: WEB3FORMS_ACCESS_KEY,
             subject,
-            from_name: 'NOVA TRADE',
+            from_name: 'NOVA TECH',
             email,
             message
         })
@@ -1188,7 +1199,7 @@ async function sendNovaEmail(subject, message, email) {
     return result;
 }
 
-// DEPOSIT MODAL & MANUAL VERIFICATION ENGINE
+// DEPOSIT MODAL & TIMER
 let qrTimerInterval = null;
 let qrSecondsLeft = 180;
 
@@ -1276,10 +1287,10 @@ async function submitQrDeposit(e) {
     $('qrSubmitButton').disabled = true;
     $('qrSubmitButton').textContent = 'SENDING...';
 
-    const message = 'NOVA TRADE DEPOSIT REQUEST\n\nUser: ' + currentAccount.name + '\nTID: ' + tid + '\nAmount: ' + amount + ' PKR';
+    const message = 'NOVA TECH DEPOSIT REQUEST\n\nUser: ' + currentAccount.name + '\nTID: ' + tid + '\nAmount: ' + amount + ' PKR';
 
     try {
-        await sendNovaEmail('DEPOSIT REQUEST | NOVA TRADE', message, email);
+        await sendNovaEmail('DEPOSIT REQUEST | NOVA TECH', message, email);
     } catch (err) {
         console.log("Email notification error", err);
     }
@@ -1393,7 +1404,7 @@ async function submitWithdrawal(e) {
     const message = 'WITHDRAWAL REQUEST\nUser: ' + currentAccount.name + '\nAmount: ' + amount + ' PKR\nAccount: ' + accountNumber;
 
     try {
-        await sendNovaEmail('WITHDRAWAL REQUEST | NOVA TRADE', message, email);
+        await sendNovaEmail('WITHDRAWAL REQUEST | NOVA TECH', message, email);
         closeWithdrawModal();
         $('withdrawForm').reset();
         toast('Withdrawal request submitted! PKR ' + amount.toLocaleString('en-PK') + ' reserved from balance.');
@@ -1408,7 +1419,7 @@ async function submitWithdrawal(e) {
     }
 }
 
-// CLOSE MODALS WHEN CLICKING OUTSIDE
+// CLOSE MODALS ON OUTSIDE CLICK
 ['accountModal', 'qrDepositModal', 'withdrawModal', 'tradeWinModal', 'adminModal'].forEach(id => {
     const el = $(id);
     if (el) {
@@ -1424,7 +1435,7 @@ async function submitWithdrawal(e) {
     }
 });
 
-// START APPLICATION & RESTORE SESSION
+// INITIALIZE APP
 document.addEventListener('DOMContentLoaded', () => {
     let savedAccounts = JSON.parse(localStorage.getItem('NOVA_saved_accounts') || '[]');
     let loggedEmail = localStorage.getItem('NOVA_logged_email');
