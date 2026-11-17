@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZERVON TRADE | Global Markets Terminal</title>
+<title>NOVA TRADE | Global Markets Terminal</title>
 
 <!-- PWA & NATIVE MOBILE APP CAPABILITIES -->
 <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIlplcnZvblRyYWRlIEdsb2JhbCBNYXJrZXRzIiwKICAic2hvcnRfbmFtZSI6ICJaZXJ2b25UcmFkZSIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzA4MGEwYyIsCiAgInRoZW1lX2NvbG9yIjogIiMwODBhMGMiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBIbkNheUIzTWpNd0lIQjFZaUIwWlNCaGJHOXpQVjEwT21KbFpHOXlJazVuWjJjOUlqQXdJQ0FnTUNBaU1ERTJJQ0FnTVRFaUlpQmtiM2R1TDNkeWFXTmlQVkFpTURoZk1HSmpJaUFpY0dGcGJuZHBkR2hpSUQwZ0lqQTRtR0ZqTUdNaUlpQnZibVFpS1NCN2JHOWpLU0IwWVhCb0lEMGdaV0U5SW0xcGJXVklaVzVqWldVaUlpQndiM0owSWpvaUpUWkVSazFsUkVWU0lpQnpaV0k0SWpvaUpUVnFkV3QxWldVaUlpQnpaV0p1SWpvaUpUVnFkV3QxWldVaUlsMCsiLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWw7YmFzZTY0IiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfQogIF0KfQ==" id="manifest-placeholder">
@@ -11,7 +11,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="ZERVONTrade">
+<meta name="apple-mobile-web-app-title" content="NOVATrade">
 
 <!-- APP HOME SCREEN ICON -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='120' fill='%23080a0c'/><circle cx='256' cy='256' r='210' fill='%23111518' stroke='%23d0ae70' stroke-width='10'/><path d='M160 360V152h45l75 125V152h40v208h-45l-75-125v125h-40z' fill='url(%23goldGrad)'/><path d='M315 152l65 80h-40v128h-40V232h-40l55-80z' fill='%2318c58a'/><defs><linearGradient id='goldGrad' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%23fef08a'/><stop offset='50%' stop-color='%23d0ae70'/><stop offset='100%' stop-color='%23854d0e'/></linearGradient></defs></svg>">
@@ -65,9 +65,9 @@ button:disabled{opacity:.45;cursor:not-allowed}
   <header class="sticky top-0 z-30 bg-[#090b0d]/95 border-b border-[#292e32]">
     <div class="max-w-[1500px] mx-auto p-4 flex justify-between items-center gap-3 flex-wrap">
       <div class="flex items-center gap-3">
-        <div onclick="handleLogoTripleClick()" title="ZERVON Trade Terminal" class="w-10 h-10 border border-[#a78954] rounded-xl flex items-center justify-center gold font-bold text-xl cursor-pointer select-none">Z</div>
+        <div onclick="handleLogoTripleClick()" title="NOVA Trade Terminal" class="w-10 h-10 border border-[#a78954] rounded-xl flex items-center justify-center gold font-bold text-xl cursor-pointer select-none">Z</div>
         <div>
-          <div class="brand font-extrabold text-lg">ZERVON TRADE</div>
+          <div class="brand font-extrabold text-lg">NOVA TRADE</div>
           <div class="text-[9px] tracking-[.3em] muted">GLOBAL MARKETS TERMINAL</div>
         </div>
       </div>
@@ -176,7 +176,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
         <div class="panel p-5">
           <div class="flex justify-between items-center mb-4">
             <div class="font-bold">Place Trade</div>
-            <span class="gold text-xs">ZERVON DESK</span>
+            <span class="gold text-xs">NOVA DESK</span>
           </div>
           <label class="muted text-xs">Trading Asset</label>
           <select id="tradeAsset" class="field mt-2 mb-4" onchange="onAssetOrModeChange()">
@@ -204,14 +204,14 @@ button:disabled{opacity:.45;cursor:not-allowed}
       </aside>
     </div>
 
-    <footer class="text-center muted text-xs py-8">© 2026 ZERVON TRADE · GLOBAL TRADING TERMINAL</footer>
+    <footer class="text-center muted text-xs py-8">© 2026 NOVA TRADE · GLOBAL TRADING TERMINAL</footer>
   </main>
 
 <!-- ACCOUNT MODAL -->
 <div id="accountModal" class="qr-modal-overlay">
   <div class="qr-modal-box">
     <button onclick="closeAccountModal()" class="absolute right-4 top-3 text-2xl muted">×</button>
-    <div class="brand gold text-xs mb-2">ZERVON TRADE · ACCOUNT</div>
+    <div class="brand gold text-xs mb-2">NOVA TRADE · ACCOUNT</div>
     <h3 id="accountModalTitle" class="text-xl font-bold mb-4">Create Account</h3>
 
     <div class="grid grid-cols-2 gap-2 mb-4">
@@ -235,7 +235,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 <div id="qrDepositModal" class="qr-modal-overlay">
   <div class="qr-modal-box">
     <button onclick="closeQrDepositModal()" class="absolute right-4 top-3 text-2xl muted">×</button>
-    <div class="brand gold text-xs mb-2">ZERVON TRADE · REGIONAL GATEWAY</div>
+    <div class="brand gold text-xs mb-2">NOVA TRADE · REGIONAL GATEWAY</div>
 
     <div id="depositFormView">
       <h3 class="text-xl font-bold mb-3">Instant Scan & Pay</h3>
@@ -247,7 +247,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
       <div class="qr-timer-display" id="qrTimerDisplay">03:00</div>
 
       <div class="qr-img-wrap">
-        <img src="qr-code.png.jpeg" alt="ZERVONTrade payment QR code" onerror="this.style.display='none';document.getElementById('qrImageError').style.display='block'">
+        <img src="qr-code.png.jpeg" alt="NOVATrade payment QR code" onerror="this.style.display='none';document.getElementById('qrImageError').style.display='block'">
       </div>
       <p id="qrImageError" style="display:none" class="text-center text-red-400 text-xs mb-3">QR image reference error. Ensure qr-code.png.jpeg is available.</p>
 
@@ -292,7 +292,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 <div id="withdrawModal" class="qr-modal-overlay">
   <div class="qr-modal-box">
     <button onclick="closeWithdrawModal()" class="absolute right-4 top-3 text-2xl muted">×</button>
-    <div class="brand gold text-xs mb-2">ZERVON TRADE · WITHDRAWAL</div>
+    <div class="brand gold text-xs mb-2">NOVA TRADE · WITHDRAWAL</div>
     <h3 class="text-xl font-bold mb-4">Withdrawal Request</h3>
 
     <form id="withdrawForm" class="space-y-3" onsubmit="submitWithdrawal(event)">
@@ -330,7 +330,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 <div id="adminModal" class="qr-modal-overlay">
   <div class="qr-modal-box" style="max-width:580px;">
     <button onclick="closeAdminModal()" class="absolute right-4 top-3 text-2xl muted">×</button>
-    <div class="brand gold text-xs mb-1">ZERVON TRADE · MASTER VAULT</div>
+    <div class="brand gold text-xs mb-1">NOVA TRADE · MASTER VAULT</div>
     <h3 class="text-xl font-bold mb-3">Admin Control Center</h3>
     
     <div id="adminLoginSection">
@@ -364,7 +364,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 <div id="tradeWinModal" class="trade-modal-overlay">
   <div class="trade-modal-box">
     <div class="trade-icon-circle">✓</div>
-    <div class="brand gold text-xs mb-1">ZERVON TRADE · EXECUTION</div>
+    <div class="brand gold text-xs mb-1">NOVA TRADE · EXECUTION</div>
     <h3 class="text-2xl font-extrabold mb-1 text-green-400">TRADE WON</h3>
     <div id="winModalProfit" class="font-extrabold text-3xl gold my-3">+PKR 0.00</div>
     
@@ -510,11 +510,11 @@ function updateDashboard() {
     $('balanceDisplay').textContent = formatPKR(availableBalance);
 
     if (currentAccount) {
-        let savedAccounts = JSON.parse(localStorage.getItem('zervon_saved_accounts') || '[]');
+        let savedAccounts = JSON.parse(localStorage.getItem('NOVA_saved_accounts') || '[]');
         let index = savedAccounts.findIndex(acc => acc.email === currentAccount.email);
         if (index !== -1) {
             savedAccounts[index] = currentAccount;
-            localStorage.setItem('zervon_saved_accounts', JSON.stringify(savedAccounts));
+            localStorage.setItem('NOVA_saved_accounts', JSON.stringify(savedAccounts));
         }
     }
 
@@ -565,7 +565,7 @@ function handleAccountSubmit(e) {
         return;
     }
 
-    let savedAccounts = JSON.parse(localStorage.getItem('zervon_saved_accounts') || '[]');
+    let savedAccounts = JSON.parse(localStorage.getItem('NOVA_saved_accounts') || '[]');
 
     if (accountMode === 'create') {
         if (!name) {
@@ -595,8 +595,8 @@ function handleAccountSubmit(e) {
         savedAccounts.push(newAccount);
         currentAccount = newAccount;
 
-        localStorage.setItem('zervon_saved_accounts', JSON.stringify(savedAccounts));
-        localStorage.setItem('zervon_logged_email', email);
+        localStorage.setItem('NOVA_saved_accounts', JSON.stringify(savedAccounts));
+        localStorage.setItem('NOVA_logged_email', email);
         $('accountStatus').textContent = 'Account created successfully.';
         toast('Account created successfully.');
     } else {
@@ -611,7 +611,7 @@ function handleAccountSubmit(e) {
         }
 
         currentAccount = found;
-        localStorage.setItem('zervon_logged_email', email);
+        localStorage.setItem('NOVA_logged_email', email);
         $('accountStatus').textContent = 'Login successful.';
         toast('Login successful.');
     }
@@ -628,7 +628,7 @@ function logoutAccount() {
         return;
     }
     currentAccount = null;
-    localStorage.removeItem('zervon_logged_email');
+    localStorage.removeItem('NOVA_logged_email');
     updateAccountUI();
     toast('You have logged out.');
 }
@@ -654,7 +654,7 @@ function handleLogoTripleClick() {
 
 function openAdminModal() {
     $('adminModal').style.display = 'flex';
-    const isAuth = sessionStorage.getItem('zervon_admin_auth') === 'true';
+    const isAuth = sessionStorage.getItem('NOVA_admin_auth') === 'true';
     if (isAuth) {
         $('adminLoginSection').style.display = 'none';
         $('adminDashboardSection').style.display = 'block';
@@ -674,7 +674,7 @@ function handleAdminLogin(e) {
     e.preventDefault();
     const pwd = $('adminPasswordInput').value;
     if (pwd === 'Ahadmehar1') {
-        sessionStorage.setItem('zervon_admin_auth', 'true');
+        sessionStorage.setItem('NOVA_admin_auth', 'true');
         $('adminLoginSection').style.display = 'none';
         $('adminDashboardSection').style.display = 'block';
         renderAdminUsers();
@@ -686,7 +686,7 @@ function handleAdminLogin(e) {
 }
 
 function lockAdmin() {
-    sessionStorage.removeItem('zervon_admin_auth');
+    sessionStorage.removeItem('NOVA_admin_auth');
     $('adminLoginSection').style.display = 'block';
     $('adminDashboardSection').style.display = 'none';
     $('adminPasswordInput').value = '';
@@ -697,7 +697,7 @@ function renderAdminUsers() {
     const container = $('adminUsersList');
     if (!container) return;
 
-    let savedAccounts = JSON.parse(localStorage.getItem('zervon_saved_accounts') || '[]');
+    let savedAccounts = JSON.parse(localStorage.getItem('NOVA_saved_accounts') || '[]');
     if (!savedAccounts.length) {
         container.innerHTML = '<div class="muted text-xs text-center py-4">No registered user accounts found.</div>';
         return;
@@ -718,7 +718,7 @@ function renderAdminUsers() {
 }
 
 function adminApproveDeposit(idx) {
-    let savedAccounts = JSON.parse(localStorage.getItem('zervon_saved_accounts') || '[]');
+    let savedAccounts = JSON.parse(localStorage.getItem('NOVA_saved_accounts') || '[]');
     const amtInput = $(`adminAddAmt_${idx}`);
     const addAmount = Number(amtInput ? amtInput.value : 0);
 
@@ -739,7 +739,7 @@ function adminApproveDeposit(idx) {
             status: 'SUCCESSFUL'
         });
 
-        localStorage.setItem('zervon_saved_accounts', JSON.stringify(savedAccounts));
+        localStorage.setItem('NOVA_saved_accounts', JSON.stringify(savedAccounts));
 
         if (currentAccount && currentAccount.email === savedAccounts[idx].email) {
             currentAccount = savedAccounts[idx];
@@ -1175,7 +1175,7 @@ async function sendNovaEmail(subject, message, email) {
         body: JSON.stringify({
             access_key: WEB3FORMS_ACCESS_KEY,
             subject,
-            from_name: 'ZERVON TRADE',
+            from_name: 'NOVA TRADE',
             email,
             message
         })
@@ -1276,10 +1276,10 @@ async function submitQrDeposit(e) {
     $('qrSubmitButton').disabled = true;
     $('qrSubmitButton').textContent = 'SENDING...';
 
-    const message = 'ZERVON TRADE DEPOSIT REQUEST\n\nUser: ' + currentAccount.name + '\nTID: ' + tid + '\nAmount: ' + amount + ' PKR';
+    const message = 'NOVA TRADE DEPOSIT REQUEST\n\nUser: ' + currentAccount.name + '\nTID: ' + tid + '\nAmount: ' + amount + ' PKR';
 
     try {
-        await sendNovaEmail('DEPOSIT REQUEST | ZERVON TRADE', message, email);
+        await sendNovaEmail('DEPOSIT REQUEST | NOVA TRADE', message, email);
     } catch (err) {
         console.log("Email notification error", err);
     }
@@ -1393,7 +1393,7 @@ async function submitWithdrawal(e) {
     const message = 'WITHDRAWAL REQUEST\nUser: ' + currentAccount.name + '\nAmount: ' + amount + ' PKR\nAccount: ' + accountNumber;
 
     try {
-        await sendNovaEmail('WITHDRAWAL REQUEST | ZERVON TRADE', message, email);
+        await sendNovaEmail('WITHDRAWAL REQUEST | NOVA TRADE', message, email);
         closeWithdrawModal();
         $('withdrawForm').reset();
         toast('Withdrawal request submitted! PKR ' + amount.toLocaleString('en-PK') + ' reserved from balance.');
@@ -1426,8 +1426,8 @@ async function submitWithdrawal(e) {
 
 // START APPLICATION & RESTORE SESSION
 document.addEventListener('DOMContentLoaded', () => {
-    let savedAccounts = JSON.parse(localStorage.getItem('zervon_saved_accounts') || '[]');
-    let loggedEmail = localStorage.getItem('zervon_logged_email');
+    let savedAccounts = JSON.parse(localStorage.getItem('NOVA_saved_accounts') || '[]');
+    let loggedEmail = localStorage.getItem('NOVA_logged_email');
 
     if (loggedEmail) {
         let found = savedAccounts.find(acc => acc.email === loggedEmail);
