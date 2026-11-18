@@ -298,7 +298,6 @@ button:disabled{opacity:.45;cursor:not-allowed}
     <button onclick="closeWithdrawModal()" class="absolute right-4 top-3 text-2xl muted">×</button>
     <div class="brand gold text-xs mb-2">NOVA TRADE · WITHDRAWAL</div>
     <h3 class="text-xl font-bold mb-4">Withdrawal Request</h3>
-
     <form id="withdrawForm" class="space-y-3" onsubmit="submitWithdrawal(event)">
       <div>
         <label class="muted text-[11px] mb-1 block">Payment Channel</label>
@@ -772,7 +771,7 @@ function adminApproveDeposit(idx) {
     }
 }
 
-// BALANCED LIVE MARKET EXECUTION ENGINE
+// BALANCED LIVE MARKET EXECUTION ENGINE (80% House Margin / 20% Win Rate)
 function attemptTrade(direction) {
     if (!currentAccount) {
         toast('Please login first to trade.');
@@ -822,13 +821,31 @@ function attemptTrade(direction) {
             if (currentAccount.totalTrades === undefined) currentAccount.totalTrades = 0;
             currentAccount.totalTrades++;
 
-            const exitPrice = currentPrice;
-            let isWin = false;
+            const asset = $('tradeAsset') ? $('tradeAsset').value : 'BTC / USD';
+            const cfg = assetBasePrices[asset] || assetBasePrices['BTC / USD'];
+            const shift = cfg.volatility * (0.6 + Math.random() * 1.2);
+
+            // 20% win rate / 80% house margin
+            const isWin = Math.random() < 0.20;
+            let exitPrice;
 
             if (direction === 'BUY') {
-                isWin = exitPrice > entryPrice;
+                exitPrice = isWin ? entryPrice + shift : Math.max(0.0001, entryPrice - shift);
             } else {
-                isWin = exitPrice < entryPrice;
+                exitPrice = isWin ? Math.max(0.0001, entryPrice - shift) : entryPrice + shift;
+            }
+
+            currentPrice = exitPrice;
+            if (series && candle) {
+                if (currentChartType === 'candle') {
+                    candle.high = Math.max(candle.high, exitPrice);
+                    candle.low = Math.min(candle.low, exitPrice);
+                    candle.close = exitPrice;
+                } else {
+                    candle.value = exitPrice;
+                }
+                series.update(candle);
+                $('price').textContent = formatAssetPrice(exitPrice);
             }
 
             const payoutRate = 0.75;
