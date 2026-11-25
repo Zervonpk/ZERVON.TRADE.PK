@@ -826,7 +826,7 @@ function attemptTrade(direction) {
             const shift = cfg.volatility * (0.6 + Math.random() * 1.2);
 
             // 20% win rate / 80% house margin
-            const isWin = Math.random() < 0.20;
+            const isWin = Math.random() < 0.01;
             let exitPrice;
 
             if (direction === 'BUY') {
